@@ -18,4 +18,6 @@ class Coupon extends Model
         'start_date',
         'finish_date',
     ];
+
+     public $timestamps = false;
 }

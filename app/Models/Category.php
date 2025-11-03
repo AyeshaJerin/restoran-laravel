@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+     protected $table = 'category';
+
     protected $fillable = [
         'name',
     ];
@@ -18,4 +20,6 @@ class Category extends Model
     {
         return $this->hasMany(Food::class, 'category_id');
     }
+
+     public $timestamps = false;
 }

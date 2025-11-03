@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Food extends Model
 {
     use HasFactory;
+
+     protected $table = 'food';
+
      protected $fillable = [
         'category_id',
         'title',
@@ -21,4 +24,6 @@ class Food extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+     public $timestamps = false;
 }
