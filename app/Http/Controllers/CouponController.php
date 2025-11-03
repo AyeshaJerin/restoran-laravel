@@ -12,7 +12,8 @@ class CouponController extends Controller
      */
     public function index()
     {
-        //
+        $data=Coupon::get();
+        return view('coupon.index',compact('data'));
     }
 
     /**
@@ -20,7 +21,7 @@ class CouponController extends Controller
      */
     public function create()
     {
-        //
+       return view('coupon.create');
     }
 
     /**
@@ -28,7 +29,8 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Coupon::create($request->all());
+       return redirect()->route('coupon.index');
     }
 
     /**
@@ -44,7 +46,7 @@ class CouponController extends Controller
      */
     public function edit(Coupon $coupon)
     {
-        //
+         return view('coupon.edit',compact('coupon'));
     }
 
     /**
@@ -52,7 +54,8 @@ class CouponController extends Controller
      */
     public function update(Request $request, Coupon $coupon)
     {
-        //
+        $coupon->update($request->all());
+       return redirect()->route('coupon.index');
     }
 
     /**
@@ -60,6 +63,7 @@ class CouponController extends Controller
      */
     public function destroy(Coupon $coupon)
     {
-        //
+       $coupon->delete();
+       return redirect()->route('coupon.index');;
     }
 }

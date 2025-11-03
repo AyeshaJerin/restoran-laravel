@@ -12,7 +12,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $data=Order::get();
+        return view('order.index',compact('data'));
     }
 
     /**
@@ -20,7 +21,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('order.create');
     }
 
     /**
@@ -28,7 +29,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       Order::create($request->all());
+       return redirect()->route('order.index');
     }
 
     /**
@@ -44,7 +46,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+       return view('order.edit',compact('order'));
     }
 
     /**
@@ -52,7 +54,8 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+      $order->update($request->all());
+       return redirect()->route('order.index');
     }
 
     /**
@@ -60,6 +63,7 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+      $order->delete();
+       return redirect()->route('order.index');;
     }
 }

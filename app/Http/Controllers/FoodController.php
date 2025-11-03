@@ -12,7 +12,8 @@ class FoodController extends Controller
      */
     public function index()
     {
-        //
+        $data=Food::get();
+        return view('food.index',compact('data'));
     }
 
     /**
@@ -20,7 +21,7 @@ class FoodController extends Controller
      */
     public function create()
     {
-        //
+        return view('food.create');
     }
 
     /**
@@ -28,7 +29,8 @@ class FoodController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Food::create($request->all());
+       return redirect()->route('food.index');
     }
 
     /**
@@ -44,7 +46,7 @@ class FoodController extends Controller
      */
     public function edit(Food $food)
     {
-        //
+       return view('food.edit',compact('food'));
     }
 
     /**
@@ -52,7 +54,8 @@ class FoodController extends Controller
      */
     public function update(Request $request, Food $food)
     {
-        //
+      $Food->update($request->all());
+       return redirect()->route('food.index');
     }
 
     /**
@@ -60,6 +63,7 @@ class FoodController extends Controller
      */
     public function destroy(Food $food)
     {
-        //
+        $Food->delete();
+       return redirect()->route('food.index');;
     }
 }

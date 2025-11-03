@@ -3,6 +3,18 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+
+
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\FoodController;
+use App\Http\Controllers\Api\CouponController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\UserController;
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +29,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// Category Routes
+Route::apiResource('categories', CategoryController::class);
+
+// Food Routes
+Route::apiResource('foods', FoodController::class);
+
+// Coupon Routes
+Route::apiResource('coupons', CouponController::class);
+
+// Order Routes
+Route::apiResource('orders', OrderController::class);
+
+// User Routes
+Route::apiResource('users', UserController::class);
