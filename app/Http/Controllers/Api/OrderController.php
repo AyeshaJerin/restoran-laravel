@@ -22,24 +22,8 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-         $data = $request->validate([
-            'customer_name' => 'required|string|max:255',
-            'customer_contact' => 'required|string|max:255',
-            'customer_email' => 'nullable|email',
-            'billing_address' => 'nullable|string',
-            'billing_city' => 'nullable|integer',
-            'shipping_address' => 'required|string',
-            'shipping_city' => 'required|integer',
-            'order_date' => 'nullable|date',
-            'sub_total' => 'nullable|numeric',
-            'discount' => 'nullable|numeric',
-            'grand_total' => 'nullable|numeric',
-            'delivery_date' => 'nullable|date',
-            'order_status' => 'nullable|integer',
-            'cart_details' => 'nullable|string',
-        ]);
 
-        $order = Order::create($data);
+        $order = Order::create($request->all());
         return response()->json($order, 201);
     }
 
@@ -54,8 +38,9 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request)
     {
+        $order=Order::find($request->id);
         $order->update($request->all());
         return response()->json($order);
     }

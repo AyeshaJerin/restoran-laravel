@@ -27,9 +27,13 @@ class FoodController extends Controller
             'category_id' => 'required|exists:categories,id',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'price' => 'required|numeric',
-            'image' => 'nullable|string',
+            'price' => 'required|numeric'
         ]);
+        if($request->hasFile('image')){
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('images'), $imageName);
+            $data['image'] = 'images/'.$imageName;
+        }
 
         $food = Food::create($data);
         return response()->json($food, 201);
